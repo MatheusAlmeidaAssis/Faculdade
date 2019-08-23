@@ -6,9 +6,19 @@ using System.Data.SqlClient;
 namespace Dos.UI.Controls
 {
     sealed class DataBase : IDisposable
-    {        
+    {
         static DataBase _instancia;
-        public SqlConnection Con { get;}
+        private Select _select;
+        public SqlConnection Con { get; }
+        public Select Select
+        {
+            get
+            {
+                if (_select == null)
+                    _select = new Select();
+                return _select;
+            }
+        }
         public static DataBase GetDataBase
         {
             get { return _instancia ?? (_instancia = new DataBase()); }

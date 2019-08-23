@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dos.UI.Controls
 {
     class Select
     {
         private SqlCommand _cmdSelect;
+        private Update _update;
+        private Delete _delete;
+        private Insert _insert;
         public List<List<string>> Campos { get; set; }
         public List<List<string>> Tabelas { get; set; }
         public List<List<string>> LeftJoin { get; set; }
@@ -19,6 +18,38 @@ namespace Dos.UI.Controls
         public List<List<string>> Where { get; set; }
         public List<List<string>> GroupBy { get; set; }
         public List<string> OrderBy { get; set; }
+        public Insert Insert
+        {
+            get
+            {
+                if (_insert == null)
+                    _insert = new Insert();
+                _insert.Tabela = Tabelas[0][0];
+                return _insert;
+            }
+        }
+        public Update Update
+        {
+            get
+            {
+                if (_update == null)
+                    _update = new Update();
+                _update.Tabela = Tabelas[0][0];
+                _update.Where = Where[0];
+                return _update;
+            }
+        }
+        public Delete Delete
+        {
+            get
+            {
+                if (_delete == null)
+                    _delete = new Delete();
+                _delete.Tabela = Tabelas[0][0];
+                _delete.Where = Where[0];
+                return _delete;
+            }
+        }
 
         public Select()
         {
@@ -34,7 +65,7 @@ namespace Dos.UI.Controls
         }
         public SqlDataReader DataReader()
         {
-            return this.Command().ExecuteReader();
+            return Command().ExecuteReader();
         }
     }
 }
