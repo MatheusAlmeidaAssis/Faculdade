@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Dos.UI.Controls
 {
@@ -21,12 +18,25 @@ namespace Dos.UI.Controls
         public SqlCommand Command()
         {
             if (_cmdDelete == null)
-                _cmdDelete = new SqlCommand(Utils.MontaDelete(Tabela, Where), DataBase.GetDataBase.Con);
+                _cmdDelete = new SqlCommand(MontaDelete(Tabela, Where), DataBase.GetDataBase.Con);
             return _cmdDelete;
         }
         public void Executar()
         {
             Command().ExecuteNonQuery();
+        }
+        public static string MontaDelete(string aTabela, List<string> aWhere)
+        {
+            StringBuilder strDelete = new StringBuilder("Delete ");
+            strDelete.Append("From ");
+            strDelete.Append(aTabela);
+            for (int i = 0; i < aWhere.Count; i++)
+            {
+                if (i == 0)
+                    strDelete.Append(" Where ");                
+                strDelete.Append(aWhere[i][i]);                
+            }
+            return strDelete.ToString();
         }
     }
 }
