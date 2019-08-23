@@ -47,6 +47,7 @@
     <Compile Include="Controls\DataBase.cs" />
     <Compile Include="Controls\Insert.cs" />
     <Compile Include="Controls\Objetos.cs" />
+    <Compile Include="Controls\Select.cs" />
     <Compile Include="Controls\Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
