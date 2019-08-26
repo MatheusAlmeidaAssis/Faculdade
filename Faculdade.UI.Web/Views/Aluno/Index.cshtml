@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Faculdade.Models.Aluno>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Adicionar", "Cadastrar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mae)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mae)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNascimento)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { aId=item.Id }) |
+            @Html.ActionLink("Detalhes", "Detalhes", new { aId=item.Id }) |
+            @Html.ActionLink("Excluir", "Excluir", new { aId=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
