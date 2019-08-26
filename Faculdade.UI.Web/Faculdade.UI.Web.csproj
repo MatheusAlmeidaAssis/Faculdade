@@ -186,17 +186,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Faculdade.ADO\Faculdade.ADO.csproj">
-      <Project>{0950743c-630f-4c97-9470-e36c6eefa42c}</Project>
-      <Name>Faculdade.ADO</Name>
+    <ProjectReference Include="..\Faculdade.Applications\Faculdade.Applications.csproj">
+      <Project>{FEF31800-475C-4E90-8189-EE37C35621E8}</Project>
+      <Name>Faculdade.Applications</Name>
     </ProjectReference>
     <ProjectReference Include="..\Faculdade.Dominio\Faculdade.Dominio.csproj">
       <Project>{C009725A-D260-49DC-8463-AEC448F64932}</Project>
       <Name>Faculdade.Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Faculdade.Repositorio\Faculdade.csproj">
-      <Project>{e0647d6f-04fc-46b5-b20b-7bd3dfe1bdf6}</Project>
-      <Name>Faculdade</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

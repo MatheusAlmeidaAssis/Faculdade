@@ -28,7 +28,7 @@ namespace Faculdade.ADO.Applications
                 Id = (int)aDados[Aluno.ArrCampos[(int)Aluno.Campos.Id]],
                 Nome = (string)aDados[Aluno.ArrCampos[(int)Aluno.Campos.Nome]],
                 Mae = (string)aDados[Aluno.ArrCampos[(int)Aluno.Campos.Mae]],
-                DataNascimento = (DateTime)aDados[Aluno.ArrCampos[(int)Aluno.Campos.DataNascimento]]
+                DtaNasc = (DateTime)aDados[Aluno.ArrCampos[(int)Aluno.Campos.DataNascimento]]
             };
             return aluno;
         }
@@ -49,7 +49,7 @@ namespace Faculdade.ADO.Applications
             var parametros = insert.Command().Parameters;
             parametros.AddWithValue("@Nome", aAluno.Nome);
             parametros.AddWithValue("@Mae", aAluno.Mae);
-            parametros.AddWithValue("@DtaNasc", aAluno.DataNascimento);
+            parametros.AddWithValue("@DtaNasc", aAluno.DtaNasc);
             insert.Executar();
         }
         public IEnumerable<Aluno> Listar(int aId = 0)
@@ -90,7 +90,7 @@ namespace Faculdade.ADO.Applications
                 update.Campos.Add(Aluno.ArrCampos[(int)Aluno.Campos.Mae]);
                 update.Valores.Add("@Mae");
             }
-            if (aluno.DataNascimento != aAluno.DataNascimento)
+            if (aluno.DtaNasc != aAluno.DtaNasc)
             {
                 update.Campos.Add(Aluno.ArrCampos[(int)Aluno.Campos.DataNascimento]);
                 update.Valores.Add("@DtaNasc");
@@ -101,8 +101,8 @@ namespace Faculdade.ADO.Applications
                 parametros.AddWithValue("@Nome", aAluno.Nome);
             if (aluno.Mae != aAluno.Mae)
                 parametros.AddWithValue("@Mae", aAluno.Mae);
-            if (aluno.DataNascimento != aAluno.DataNascimento)
-                parametros.AddWithValue("@DtaNasc", aAluno.DataNascimento);
+            if (aluno.DtaNasc != aAluno.DtaNasc)
+                parametros.AddWithValue("@DtaNasc", aAluno.DtaNasc);
             update.Executar();
         }
         public void Excluir(int aId)

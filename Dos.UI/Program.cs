@@ -19,7 +19,7 @@ namespace Faculdade.UI.Dos
             {
                 Nome = strNome,
                 Mae = strMae,
-                DataNascimento = Convert.ToDateTime(strData)
+                DtaNasc = Convert.ToDateTime(strData)
             };
             var alunoControl = AlunoApplicationFramework.AlunoApplicationADO();
             alunoControl.Salvar(alunoInsert);
@@ -27,7 +27,7 @@ namespace Faculdade.UI.Dos
             foreach (var aluno in alunos)
             {
                 Console.WriteLine("Id:{0}, Nome:{1}, Mãe:{2}, Data de Nascimento:{3}", aluno.Id,
-                    aluno.Nome, aluno.Mae, aluno.DataNascimento);
+                    aluno.Nome, aluno.Mae, aluno.DtaNasc);
             }
             Console.Read();
         }

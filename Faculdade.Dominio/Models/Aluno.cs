@@ -12,9 +12,9 @@ namespace Faculdade.Dominio.Models
         public string Mae { get; set; }
         [DisplayName("Data de Nascimento")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DataNascimento { get; set; }
+        public DateTime DtaNasc { get; set; }
         public enum Campos { Id, Nome, Mae, DataNascimento };
-        public static readonly string[] ArrCampos = { "AlunoId", "Nome", "Mae", "DtaNasc" };
-        public const string CTabela = "Aluno";
+        public static readonly string[] ArrCampos = { "Id", "Nome", "Mae", "DtaNasc" };
+        public const string CTabela = "Alunos";
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Faculdade.Models.Aluno
+﻿@model Faculdade.Dominio.Models.Aluno
 
 @{
     ViewBag.Title = "Cadastrar";
@@ -32,10 +32,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DtaNasc, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DtaNasc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DtaNasc, "", new { @class = "text-danger" })
             </div>
         </div>
 
