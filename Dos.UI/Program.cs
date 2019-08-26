@@ -1,50 +1,33 @@
-﻿using Dos.UI.Controls;
+﻿using Faculdade.Applications;
+using Faculdade.Dominio.Models;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
-namespace Dos.UI
+namespace Faculdade.UI.Dos
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.Write("Digite o nome do aluno: ");
-            string strNome = Console.ReadLine();
-            Console.Write("Digite o nome da mãe do aluno: ");
-            string strMae = Console.ReadLine();
-            Console.Write("Digite a data de nascimento do aluno: ");
-            string strData = Console.ReadLine();
-            DateTime dtaDataNasc = Convert.ToDateTime(strData);
 
-            Select alunos = DataBase.GetDataBase.Select;
-            alunos.Campos.Add(new List<string>
+            Console.Write("Digite o nome do aluno: ");
+            var strNome = Console.ReadLine();
+            Console.Write("Digite o nome da mãe do aluno: ");
+            var strMae = Console.ReadLine();
+            Console.Write("Digite a data de nascimento do aluno: ");
+            var strData = Console.ReadLine();
+            var alunoInsert = new Aluno
             {
-                "Nome",
-                "Mae",
-                "DtaNasc"
-            });
-            alunos.Tabelas.Add(new List<string>
-            {
-                "Alunos"
-            });
-            Insert insertAluno = alunos.Insert;
-            insertAluno.Valores = new List<string>
-            {
-                "@Nome",
-                "@Mae",
-                "@DtaNasc"
+                Nome = strNome,
+                Mae = strMae,
+                DataNascimento = Convert.ToDateTime(strData)
             };
-            var parametros = insertAluno.Command().Parameters;
-            parametros.AddWithValue("@Nome", strNome);
-            parametros.AddWithValue("@Mae", strMae);
-            parametros.AddWithValue("@DtaNasc", dtaDataNasc);
-            insertAluno.Executar();
-            alunos.Campos[0].Add("Id");
-            SqlDataReader dados = alunos.DataReader();
-            while (dados.Read())
+            var alunoControl = AlunoApplicationFramework.AlunoApplicationADO();
+            alunoControl.Salvar(alunoInsert);
+            var alunos = alunoControl.Listar();
+            foreach (var aluno in alunos)
             {
-                Console.WriteLine("Id:{0}, Nome:{1}, Mãe:{2}, Data de Nascimento:{3}", dados["Id"], dados["Nome"], dados["Mae"], dados["DtaNasc"]);
+                Console.WriteLine("Id:{0}, Nome:{1}, Mãe:{2}, Data de Nascimento:{3}", aluno.Id,
+                    aluno.Nome, aluno.Mae, aluno.DataNascimento);
             }
             Console.Read();
         }
